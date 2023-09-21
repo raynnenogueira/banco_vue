@@ -21,13 +21,12 @@ export default {
     },
     methods: {
         depositar() {
-            if (this.valor >= 0) {
+            if (this.valor >= 0) {  // Se o valor inserido for maior ou igual a zero
                 this.$emit('depositar', parseFloat(this.valor));
                 // $emit é uma maneira de permitir a comunicação entre componentes Vue, 
-                // permitindo que eles disparem eventos personalizados e ouçam esses eventos 
-                // em outros lugares em sua aplicação.
-                this.valor = 0;
-                this.erro = false;
+                // permitindo que eles disparem eventos
+                this.valor = 0; // Definimos o valor como 0
+                this.erro = false; //  a variável é `false` para garantir que qualquer mensagem de erro anterior seja removida
             } else {
                 this.erro = true;
                 this.mensagemErro = 'Valor inválido';
@@ -35,16 +34,16 @@ export default {
         },
 
         tentarSacar() {
-            if (this.valor >= 0 && this.valor <= this.saldo) {
-                this.$emit('sacar', parseFloat(this.valor));
+            if (this.valor >= 0 && this.valor <= this.saldo) {  // o valor inserido for maior ou igual a zero e menor ou igual ao saldo disponível
+                this.$emit('sacar', parseFloat(this.valor));  // Isso permite que o componente pai saiba que uma ação de saque ocorreu e obtenha o valor do saque.
                 this.valor = 0;
                 this.erro = false;
             } else {
                 this.erro = true;
                 if (this.saldo < 0) {
-                    this.mensagemErro = `Saldo insuficiente. Saldo: -R$ ${Math.abs(this.saldo).toFixed(2)}`;
+                    this.mensagemErro = `Saldo insuficiente. Saldo: -R$ ${Math.abs(this.saldo).toFixed(2)}`; // se for menor que 0, aqui vai dizer que o saldo é insuficiente e mostrar quanto de saldo tem na conta
                 } else {
-                    this.mensagemErro = `Saldo insuficiente. Saldo: R$ ${this.saldo.toFixed(2)}`;
+                    this.mensagemErro = `Saldo insuficiente. Saldo: R$ ${this.saldo.toFixed(2)}`; // se o valor for positivo, vai mostrar o saldo tambem
                 }
             }
         },
@@ -61,5 +60,5 @@ export default {
 </script>
 
 <style scoped>
-/* Seus estilos, se necessário */
+
 </style>
