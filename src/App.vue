@@ -1,26 +1,31 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div>
+    <h1>Banco</h1>
+    <conta :saldo="saldo" @depositar="depositar" @sacar="sacar"></conta>
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Conta from "./components/Conta.vue";
 
 export default {
-  name: 'App',
   components: {
-    HelloWorld
-  }
-}
+    Conta,
+  },
+  data() {
+    return {
+      saldo: 0,
+    };
+  },
+  methods: {
+    depositar(valor) {
+      this.saldo += valor;
+    },
+    sacar(valor) {
+      this.saldo -= valor;
+    },
+  },
+};
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
+<style scoped></style>
