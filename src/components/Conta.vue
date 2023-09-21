@@ -25,7 +25,7 @@ export default {
                 this.$emit('depositar', parseFloat(this.valor));
                 // $emit é uma maneira de permitir a comunicação entre componentes Vue, 
                 // permitindo que eles disparem eventos
-                this.valor = 0; // Definimos o valor como 0
+                this.valor = 0; // valor é 0
                 this.erro = false; //  a variável é `false` para garantir que qualquer mensagem de erro anterior seja removida
             } else {
                 this.erro = true;
@@ -34,8 +34,8 @@ export default {
         },
 
         tentarSacar() {
-            if (this.valor >= 0 && this.valor <= this.saldo) {  // o valor inserido for maior ou igual a zero e menor ou igual ao saldo disponível
-                this.$emit('sacar', parseFloat(this.valor));  // Isso permite que o componente pai saiba que uma ação de saque ocorreu e obtenha o valor do saque.
+            if (this.valor >= 0 && this.valor <= this.saldo) {  // se o valor inserido for maior ou igual a zero e menor ou igual ao saldo disponível
+                this.$emit('sacar', parseFloat(this.valor));  // permite que o componente pai saiba que o saque ocorreu e obtenha o valor do saque.
                 this.valor = 0;
                 this.erro = false;
             } else {
